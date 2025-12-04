@@ -1,0 +1,23 @@
+@import "tailwindcss";
+
+@theme {
+  --font-urbanist: "Urbanist", sans-serif;
+  --color-primary: #f84565;
+  --color-primary-dull: #d63854;
+  --scroll-bar-color: #787777 #1e1e1e;
+  --scroll-bar-background: #1a1a1a;
+  --scroll-width: thin;
+  --scroll-border-radius: 10px;
+  --scroll-border-color: #f84565;
+  --scroll-border-width: 1px;
+  --scroll-border-style: solid;
+  --scroll-border-radius: 10px;
+  --scroll-border-color: #f84565;
+  --scroll-border-width: 1px;
+  --scroll-border-style: solid;
+  --scroll-border-radius: 10px;
+}
+
+body {
+  @apply bg-black text-white;
+}

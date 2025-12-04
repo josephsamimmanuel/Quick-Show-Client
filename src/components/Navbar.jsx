@@ -1,0 +1,42 @@
+import React, { useState } from "react";
+import { Link } from "react-router-dom";
+import { assets } from "../assets/assets";
+import { MenuIcon, SearchIcon, XIcon } from "lucide-react";
+
+function Navbar() {
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
+  return (
+    <div className="fixed top-0 left-0 right-0 z-50 w-full flex justify-between items-center px-6 md:px-10 lg:px-20 py-4">
+      <Link to="/">
+        <img src={assets.logo} alt="logo" className="w-36 h-auto" />
+      </Link>
+
+      <div
+        className={`max-md:absolute max-md:top-0 max-md:left-0 max-md:font-medium max-md:text-lg z-50 flex flex-col md:flex-row items-center max-md:justify-center gap-8 md:px-8 py-3 max-md:h-screen md:rounded-full backdrop-blur bg-black/70 md:bg-white/10 md:border border-grey-300/20 overflow-hidden transition-[width] duration-300 ${isMenuOpen ? "w-1/4" : "w-0"} lg:w-auto`}
+      >
+        <XIcon
+          onClick={() => setIsMenuOpen(false)}
+          className="md:hidden absolute max-md:top-6 right-6 w-6 h-6 text-white cursor-pointer"
+        />
+        <Link to="/">Home</Link>
+        <Link to="/movies">Movies</Link>
+        <Link to="/movies/:id">Theaters</Link>
+        <Link to="/movies/:id/:date">Releases</Link>
+        <Link to="/favourite">Favourite</Link>
+      </div>
+
+      <div className="flex items-center gap-4">
+        <SearchIcon className="max-md:ml-4 w-8 h-8 text-white cursor-pointer" />
+        <button className="max-md:hidden bg-primary text-white px-4 py-2 rounded-md">
+          Login
+        </button>
+      </div>
+      <MenuIcon
+        onClick={() => setIsMenuOpen(true)}
+        className="max-md:ml-4 md:hidden w-8 h-8 text-white cursor-pointer"
+      />
+    </div>
+  );
+}
+
+export default Navbar;
