@@ -14,7 +14,7 @@ function HeroSection() {
         <span className='flex items-center gap-2'><Calendar /> Calander 2025 </span>
         <span className='flex items-center gap-2'><Clock /> 1h 56m</span>
       </div>
-      <p className='text-sm md:text-base max-w-110 text-gray-200'>In a post-apocalyptic world where cities ride on wheels and consume each other to survive, two people meet in London and try to stop conspiract</p>
+      <p className='text-sm md:text-base max-w-110 text-gray-200'>In a post-apocalyptic world where cities ride on wheels and consume each other to survive, two people meet in London and try to stop conspiracy</p>
       <div className='flex items-start justify-center gap-4'>
         <button onClick={() => navigate('/movies')} className='bg-primary text-white px-4 py-2 rounded-full flex items-center gap-2'>Explore Movies<MoveRight /></button>
       </div>
