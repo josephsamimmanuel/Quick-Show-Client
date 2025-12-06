@@ -13,25 +13,26 @@ import {
   StarIcon,
   MoveRight,
 } from "lucide-react";
+import PageNotFound from "../components/PageNotFound";
 function MovieDetails() {
   const { id } = useParams();
   const [show, setShow] = useState(null);
   const navigate = useNavigate();
   const getShow = async () => {
     const show = dummyShowsData.find((show) => show._id === id);
-    // const dateTime = dummyDateTimeData.map((dateTime) => dateTime.showId === show._id);
     setShow({
       movie: show,
-      // dateTime: dateTime
+      dateTime: dummyDateTimeData
     });
-  };
+  }; 
+
 
   useEffect(() => {
     getShow();
   }, [id]);
   console.log(show);
 
-  return show ? (
+  return show?.movie ? (
     <div className="px-6 md:px-16 lg:px-24 xl:px-24 overflow-hidden py:30 md:py-30 lg:py-30 xl:py-30">
       <div className="flex flex-col md:flex-row gap-8 max-w-7xl mx-auto">
         <img
@@ -109,7 +110,7 @@ function MovieDetails() {
           ))}
         </div>
       </div>
-      <DateSelect dateTime={dummyDateTimeData} id={show?.movie?._id} />
+      <DateSelect dateTime={show?.dateTime} id={show?.movie?._id} />
       <div className="flex flex-col gap-10">
         <div className="flex items-center justify-between mt-20">
           <p className="text-lg font-medium text-gray-300 ">
@@ -124,7 +125,7 @@ function MovieDetails() {
     </div>
   ) : (
     <div className="px-6 md:px-16 lg:px-24 xl:px-24 overflow-hidden py-10">
-      <h1>No show found</h1>
+      <PageNotFound />
     </div>
   );
 }

@@ -2,6 +2,7 @@ import React from "react";
 import { dummyShowsData } from "../assets/assets";
 import MovieCard from "../components/MovieCard";
 import BlurCircle from "../components/BlurCircle";
+import PageNotFound from "../components/PageNotFound";
 function Movies() {
   return (
     <>
@@ -16,7 +17,7 @@ function Movies() {
         </div>
       ) : (
         <div className="px-6 py-10 md:px-16 md:py-16 lg:px-24 lg:py-20 xl:px-20 xl:py-24 overflow-hidden">
-          <h1 className="text-2xl font-bold text-gray-300">No movies found</h1>
+          <PageNotFound />
         </div>
       )}
     </>
