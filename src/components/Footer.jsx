@@ -52,12 +52,21 @@ function Footer() {
               >
                 Movies
               </FooterLink>
+
+
               <FooterLink
                 as={Link}
-                to="/my-bookings"
+                to="/movies/:id/:date"
                 className="text-xs sm:text-sm md:text-base hover:text-primary transition-colors"
               >
-                My Bookings
+                Theaters
+              </FooterLink>
+              <FooterLink
+                as={Link}
+                to="/movies/:id/:date"
+                className="text-xs sm:text-sm md:text-base hover:text-primary transition-colors"
+              >
+                My Releases
               </FooterLink>
               <FooterLink
                 as={Link}
@@ -104,7 +113,6 @@ function Footer() {
 
         <FooterDivider className="my-4 sm:my-6 md:my-8" />
 
-        {/* Copyright and Social Icons */}
         <div className="w-full px-4 sm:px-6 md:px-8 lg:px-12 xl:px-16 2xl:px-24 py-4 sm:py-5 md:py-6 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 sm:gap-0">
           <div className="text-xs sm:text-sm md:text-base text-gray-400 text-center sm:text-left">
             <FooterCopyright href="/" by="QuickShow™" year={currentYear} />

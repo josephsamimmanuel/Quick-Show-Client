@@ -4,9 +4,10 @@ import { useNavigate } from "react-router-dom";
 
 function MovieCard({ movie }) {
   const navigate = useNavigate();
+  console.log(movie);
   return (
     <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-4 gap-4 md:gap-6">
-      {movie.map((movie) => (
+      {movie?.length > 0 && movie?.map((movie) => (
         <div
           key={movie?._id}
           className="flex flex-col justify-between p-3 sm:p-4 bg-gray-800 rounded-2xl hover:-translate-y-1 transition duration-300 w-full h-auto min-h-auto sm:min-h-auto md:min-h-auto lg:min-h-auto"

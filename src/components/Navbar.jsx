@@ -4,11 +4,13 @@ import { assets } from "../assets/assets";
 import { MenuIcon, SearchIcon, TicketIcon, XIcon } from "lucide-react";
 import { useUser, useClerk, UserButton } from "@clerk/clerk-react";
 import { useNavigate } from "react-router-dom";
+import { useLocation } from "react-router-dom";
 function Navbar() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const { user } = useUser();
   const { openSignIn } = useClerk();
   const navigate = useNavigate();
+  const location = useLocation();
   return (
     <div className="fixed top-0 left-0 right-0 z-50 w-full flex justify-between items-center px-6 md:px-10 lg:px-20 py-4">
       <Link to="/">
@@ -20,13 +22,13 @@ function Navbar() {
       >
         <XIcon
           onClick={() => setIsMenuOpen(false)}
-          className="md:hidden absolute max-md:top-6 right-6 w-6 h-6 text-white cursor-pointer"
+          className="md:hidden absolute max-md:top-6 right-6 w-6 h-6 text-white cursor-pointer "
         />
-        <Link onClick={() => {scrollTo(0,0); setIsMenuOpen(false)}} to="/">Home</Link>
-        <Link onClick={() => {scrollTo(0,0); setIsMenuOpen(false)}} to="/movies">Movies</Link>
-        <Link onClick={() => {scrollTo(0,0); setIsMenuOpen(false)}} to="/movies/:id">Theaters</Link>
-        <Link onClick={() => {scrollTo(0,0); setIsMenuOpen(false)}} to="/movies/:id/:date">Releases</Link>
-        <Link onClick={() => {scrollTo(0,0); setIsMenuOpen(false)}} to="/favourite">Favourite</Link>
+        <Link onClick={() => {scrollTo(0,0); setIsMenuOpen(false)}} to="/" className={location.pathname === "/" ? "text-primary font-bold text-lg" : ""}>Home</Link>
+        <Link onClick={() => {scrollTo(0,0); setIsMenuOpen(false)}} to="/movies" className={location.pathname === "/movies" ? "text-primary font-bold text-lg" : ""}>Movies</Link>
+        <Link onClick={() => {scrollTo(0,0); setIsMenuOpen(false)}} to="/movies/:id" className={location.pathname === "/movies/:id" ? "text-primary font-bold text-lg" : ""}>Theaters</Link>
+        <Link onClick={() => {scrollTo(0,0); setIsMenuOpen(false)}} to="/movies/:id/:date" className={location.pathname === "/movies/:id/:date" ? "text-primary font-bold text-lg" : ""}>Releases</Link>
+        <Link onClick={() => {scrollTo(0,0); setIsMenuOpen(false)}} to="/favourite" className={location.pathname === "/favourite" ? "text-primary font-bold text-lg" : ""}>Favourite</Link>
       </div>
 
       <div className="flex items-center gap-4">
