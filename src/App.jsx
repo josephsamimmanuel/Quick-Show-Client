@@ -8,6 +8,7 @@ import SeatLayout from "./pages/SeatLayout";
 import Favourite from "./pages/Favourite";
 import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
+import PageNotFound from "./components/PageNotFound";
 
 function App() {
   const location = useLocation();
@@ -20,6 +21,7 @@ function App() {
         {!isAdminRoute && <Navbar />}
         <main className="grow">
           <Routes>
+            <Route path="*" element={<PageNotFound />} />
             <Route path="/" element={<Home />} />
             <Route path="/movies/:id" element={<MovieDetails />} />
             <Route path="/movies" element={<Movies />} />

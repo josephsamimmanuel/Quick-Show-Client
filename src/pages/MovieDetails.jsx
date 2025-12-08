@@ -14,6 +14,7 @@ import {
   MoveRight,
 } from "lucide-react";
 import PageNotFound from "../components/PageNotFound";
+import Loading from "../components/Loading";
 function MovieDetails() {
   const { id } = useParams();
   const [show, setShow] = useState(null);
@@ -126,6 +127,7 @@ function MovieDetails() {
   ) : (
     <div className="px-6 md:px-16 lg:px-24 xl:px-24 overflow-hidden py-10">
       <PageNotFound />
+      <Loading />
     </div>
   );
 }
