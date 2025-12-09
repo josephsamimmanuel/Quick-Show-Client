@@ -22,8 +22,9 @@ function DateSelect({ dateTime, id }) {
     if (!selectedDate) {
       return toast.error("Please select a date");
     } else {
-      toast.success("Ticket booked successfully");
+      toast.success("Locked your date slot successfully");
       navigate(`/movies/${id}/${selectedDate}`);
+      scrollTo(0, 0);
     }
   };
 

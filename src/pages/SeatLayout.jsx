@@ -71,7 +71,7 @@ function SeatLayout() {
     if(selectedSeats.length === 0) {
       return toast.error("Please select at least one seat");
     }
-    navigate(`/payment/${id}/${date}/${selectedTime}`);
+    navigate(`/my-bookings`);
     toast.success("Proceeding to payment");
   };
 

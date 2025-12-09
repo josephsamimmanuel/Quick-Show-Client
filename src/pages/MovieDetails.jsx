@@ -78,7 +78,7 @@ function MovieDetails() {
           <div className="flex items-center gap-2">
             <button className="px-4 py-2 flex items-center gap-2 text-sm bg-gray-800 text-white hover:bg-gray-700 transition rounded-full font-medium cursor-pointer active:scale-95">
               <PlayCircleIcon className="w-6 h-6 hover:fill-orange-600" />
-              <span className="text-sm text-gray-300">Watch Trailer</span>
+              <span onClick={() => {window.open(show?.movie?.backdrop_path, "_blank")}} className="text-sm text-gray-300">Watch Trailer</span>
             </button>
             <a
               onClick={() => {

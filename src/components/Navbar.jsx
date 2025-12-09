@@ -1,16 +1,32 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { assets } from "../assets/assets";
 import { MenuIcon, SearchIcon, TicketIcon, XIcon } from "lucide-react";
 import { useUser, useClerk, UserButton } from "@clerk/clerk-react";
 import { useNavigate } from "react-router-dom";
 import { useLocation } from "react-router-dom";
+import { useAuth } from "@clerk/clerk-react";
 function Navbar() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const { user } = useUser();
+  const { getToken, isSignedIn } = useAuth();
   const { openSignIn } = useClerk();
   const navigate = useNavigate();
   const location = useLocation();
+
+  useEffect(() => {
+    const fetchToken = async () => {
+      if (isSignedIn) {
+        const token = await getToken();
+        sessionStorage.setItem("token", token);
+      }
+    };
+  
+    fetchToken();
+  }, [isSignedIn]);
+  
+  
+  
   return (
     <div className="fixed top-0 left-0 right-0 z-50 w-full flex justify-between items-center px-6 md:px-10 lg:px-20 py-4">
       <Link to="/">
