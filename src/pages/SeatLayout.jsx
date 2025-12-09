@@ -3,9 +3,10 @@ import { useParams, useNavigate } from "react-router-dom";
 import { dummyShowsData } from "../assets/assets";
 import { dummyDateTimeData } from "../assets/assets";
 import PageNotFound from "../components/PageNotFound";
-import { ClockIcon, MoveRight } from "lucide-react";
+import { ClockIcon, MoveRight, LaptopMinimal } from "lucide-react";
 import BlurCircle from "../components/BlurCircle";
 import toast from "react-hot-toast";
+import DialogBox from "../components/DialogBox";
 
 function SeatLayout() {
   const { id, date } = useParams();
@@ -13,6 +14,7 @@ function SeatLayout() {
   const [selectedSeats, setSelectedSeats] = useState([]);
   const [selectedTime, setSelectedTime] = useState(null);
   const [show, setShow] = useState(null);
+  const [isDialogOpen, setIsDialogOpen] = useState(false);
 
   const loadShow = async () => {
     const foundShow = await dummyShowsData.find((show) => show._id === id);
@@ -38,19 +40,31 @@ function SeatLayout() {
   const seatGrid = [
     { row: "A", seatNo: [1, 2, 3, 4, 5, 6, 7, 8, 9] },
     { row: "B", seatNo: [1, 2, 3, 4, 5, 6, 7, 8, 9] },
-    { row: "C", seatNo: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18] },
-    { row: "D", seatNo: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18] },
-    { row: "E", seatNo: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18] },
-    { row: "F", seatNo: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18] },
-    { row: "G", seatNo: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18] },
+    { row: "", seatNo: [] },
+    { row: "C", seatNo: [1, 2, 3, 4, 5, 6, 7, 8, 9, 'X', 10, 11, 12, 13, 14, 15, 16, 17, 18] },
+    { row: "D", seatNo: [1, 2, 3, 4, 5, 6, 7, 8, 9, 'X', 10, 11, 12, 13, 14, 15, 16, 17, 18] },
+    { row: "", seatNo: [] },
+    { row: "E", seatNo: [1, 2, 3, 4, 5, 6, 7, 8, 9, 'X', 10, 11, 12, 13, 14, 15, 16, 17, 18] },
+    { row: "F", seatNo: [1, 2, 3, 4, 5, 6, 7, 8, 9, 'X', 10, 11, 12, 13, 14, 15, 16, 17, 18] },
+    { row: "G", seatNo: [1, 2, 3, 4, 5, 6, 7, 8, 9, 'X', 10, 11, 12, 13, 14, 15, 16, 17, 18] },
+    { row: "", seatNo: [] },
+    { row: "H", seatNo: [1, 2, 3, 4, 5, 6, 7, 8, 9, 'X', 10, 11, 12, 13, 14, 15, 16, 17, 18] },
+    { row: "I", seatNo: [1, 2, 3, 4, 5, 6, 7, 8, 9, 'X', 10, 11, 12, 13, 14, 15, 16, 17, 18] },
+    { row: "J", seatNo: [1, 2, 3, 4, 5, 6, 7, 8, 9, 'X', 10, 11, 12, 13, 14, 15, 16, 17, 18] },
+    { row: "K", seatNo: [1, 2, 3, 4, 5, 6, 7, 8, 9, 'X', 10, 11, 12, 13, 14, 15, 16, 17, 18] },
   ].map((row) => ({
     ...row,
     seats: row.seatNo.map((num) => `${row.row}${num}`),
   }));
 
+  const seatsAvailable = seatGrid.reduce((acc, row) => {
+    // return acc + row.seats.filter((seat) => !seat.includes('X') && !selectedSeats.includes(seat) && !occupiedSeats.includes(seat)).length;
+    return acc + row.seats.filter((seat) => !seat.includes('X') && !selectedSeats.includes(seat)).length;
+  }, 0);
+
   console.log(seatGrid);
 
-  const handleProceedToPayment = () => {
+  const handleDialogFunction = () => {
     if(selectedTime === null) {
       return toast.error("Please select a time slot");
     }
@@ -59,6 +73,14 @@ function SeatLayout() {
     }
     navigate(`/payment/${id}/${date}/${selectedTime}`);
     toast.success("Proceeding to payment");
+  };
+
+  const handleProceedToPayment = () => {
+    if(selectedSeats.length > 0 && selectedTime !== null) {  
+      setIsDialogOpen(true);
+    } else {
+      return toast.error("Please select at least one seat");
+    }
   };
 
   return (
@@ -115,8 +137,9 @@ function SeatLayout() {
         <div className="p-4 sm:p-6 md:p-8 bg-gray-900/50 rounded-xl border border-gray-700 overflow-x-auto">
           {/* Screen indicator */}
           <div className="text-center mb-6 sm:mb-8 md:mb-10">
-            <div className="inline-block px-8 sm:px-12 md:px-16 lg:px-20 py-2 bg-gradient-to-b from-gray-600 to-gray-800 rounded-t-lg">
-              <p className="text-xs sm:text-sm md:text-base text-gray-300 font-semibold">SCREEN SIDE VIEW</p>
+            <div className="inline-block px-8 sm:px-12 md:px-16 lg:px-20 py-2  rounded-t-lg">
+              <p className="text-xs sm:text-sm md:text-base  font-semibold flex items-center justify-center gap-2">SCREEN VIEW <LaptopMinimal className="w-6 h-6" /></p>
+              <p className="text-xs sm:text-sm md:text-base  font-semibold flex items-center justify-center gap-2">Seats Available: {seatsAvailable}</p>
             </div>
           </div>
           
@@ -132,6 +155,7 @@ function SeatLayout() {
                 </div>
                 
                 {/* Seats in row */}
+                {/*  */}
                 <div className="flex flex-wrap gap-1.5 sm:gap-2 md:gap-2.5 justify-center flex-1">
                   {row.seats.map((seat) => {
                     const isSelected = selectedSeats.includes(seat);
@@ -147,11 +171,14 @@ function SeatLayout() {
                     };
                     
                     return (
+                      seat.includes('X') ? (
+                        <div className="w-5 h-5 sm:w-6 sm:h-6 md:w-7 md:h-7 lg:w-7 lg:h-7"></div>
+                      ) : (
                       <button
                         key={seat}
                         onClick={handleSeatClick}
                         className={`
-                          w-6 h-6 sm:w-7 sm:h-7 md:w-8 md:h-8 lg:w-8 lg:h-8
+                          w-5 h-5 sm:w-6 sm:h-6 md:w-7 md:h-7 lg:w-7 lg:h-7
                           border-2 rounded-md
                           transition-all duration-200
                           flex items-center justify-center
@@ -166,7 +193,7 @@ function SeatLayout() {
                       >
                         {seat.replace(row.row, "")}
                       </button>
-                    );
+                    ))
                   })}
                 </div>
               </div>
@@ -206,6 +233,15 @@ function SeatLayout() {
         </div>
         <button onClick={handleProceedToPayment} className="w-fit mx-auto bg-primary text-white px-4 py-2 rounded-md flex items-center gap-2">Proceed to Payment <MoveRight className="w-4 h-4" /></button>
       </div>
+      <DialogBox 
+        isOpen={isDialogOpen}
+        setIsOpen={setIsDialogOpen}
+        handleDialogFunction={handleDialogFunction}
+        title="Proceed to Payment"
+        description="Your seats and time slot are locked. Continue to payment to finalize your booking."
+        buttonText="Proceed to Payment"
+        buttonText2="Cancel"
+      />
     </div>
   );
 }

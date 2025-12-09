@@ -81,7 +81,10 @@ function MovieDetails() {
               <span className="text-sm text-gray-300">Watch Trailer</span>
             </button>
             <a
-              href={`#dateSelect`}
+              onClick={() => {
+                const dateSelect = document.getElementById("dateSelect");
+                dateSelect.scrollIntoView({ behavior: "smooth" });
+              }}
               className="px-4 py-2 text-sm bg-primary text-white hover:bg-primary-dull transition rounded-full font-medium cursor-pointer active:scale-95"
             >
               Buy Ticket

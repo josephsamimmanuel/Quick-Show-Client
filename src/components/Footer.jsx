@@ -41,6 +41,9 @@ function Footer() {
               <FooterLink
                 as={Link}
                 to="/"
+                onClick={() => {
+                  scrollTo(0,0);
+                }}
                 className="text-xs sm:text-sm md:text-base hover:text-primary transition-colors"
               >
                 Home
@@ -48,6 +51,9 @@ function Footer() {
               <FooterLink
                 as={Link}
                 to="/movies"
+                onClick={() => {
+                  scrollTo(0,0);
+                }}
                 className="text-xs sm:text-sm md:text-base hover:text-primary transition-colors"
               >
                 Movies
@@ -56,7 +62,10 @@ function Footer() {
 
               <FooterLink
                 as={Link}
-                to="/movies/:id/:date"
+                to="/movies/:id"
+                onClick={() => {
+                  scrollTo(0,0);
+                }}
                 className="text-xs sm:text-sm md:text-base hover:text-primary transition-colors"
               >
                 Theaters
@@ -64,6 +73,9 @@ function Footer() {
               <FooterLink
                 as={Link}
                 to="/movies/:id/:date"
+                onClick={() => {
+                  scrollTo(0,0);
+                }}
                 className="text-xs sm:text-sm md:text-base hover:text-primary transition-colors"
               >
                 My Releases
@@ -71,6 +83,9 @@ function Footer() {
               <FooterLink
                 as={Link}
                 to="/favourite"
+                onClick={() => {
+                  scrollTo(0,0);
+                }}
                 className="text-xs sm:text-sm md:text-base hover:text-primary transition-colors"
               >
                 Favourites
