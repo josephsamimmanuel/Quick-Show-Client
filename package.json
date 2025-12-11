@@ -10,6 +10,10 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@clerk/clerk-react": "^5.57.1",
+    "@headlessui/react": "^2.2.9",
+    "antd": "^6.1.0",
+    "flowbite-react": "^0.12.10",
     "lucide-react": "^0.555.0",
     "react": "^19.2.0",
     "react-dom": "^19.2.0",

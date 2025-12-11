@@ -1,0 +1,30 @@
+.custom-table-wrapper {
+    background: radial-gradient(circle at top, #3b030d, #070707);
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    border-radius: 16px;
+  }
+  
+  .custom-table .ant-table {
+    background: transparent !important;
+    color: white !important;
+  }
+  
+  .custom-table .ant-table-thead > tr > th {
+    background: rgba(255, 255, 255, 0.1) !important;
+    color: #fff !important;
+    border-bottom: 1px solid rgb(137, 4, 4);
+  }
+  
+  .custom-table .ant-table-tbody > tr > td {
+    background: transparent !important;
+    color: #fff !important;
+    border-bottom: 1px solid rgb(137, 4, 4);
+  }
+  
+  .custom-table .ant-table-tbody > tr:hover > td {
+    background: rgba(255, 255, 255, 0.05) !important;
+  }  
+
+  .custom-table .ant-table-pagination {
+    color: red !important;
+  }
